@@ -3,16 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './users/user/user.component';
 import { HomeComponent } from './home/home.component';
 import { ServersComponent } from './servers/servers.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'users', component: UserComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'users/:id', component: UserComponent },
   { path: 'servers', component: ServersComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
